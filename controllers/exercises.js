@@ -1,12 +1,19 @@
 import { Exercise } from '../models/exercise.js'
 
-function index(req, res) {
-  Exercise.find({})
-  .then(exercises => res.json(exercises))
-  .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
-  })
+export const index = async(req, res) => {
+  try {
+    const exercises = await Exercise.find({})
+    return res.status(200).json(exercises)
+  } catch(err) {
+    return res.status(500).json(err)
+  }
 }
 
-export { index }
+export const show = async(req, res) => {
+  try {
+    const exercise = findById(req.params.id)
+    return res.status(200).json(exercise)
+  } catch(err) {
+    return res.status(500).json(err)
+  }
+}
