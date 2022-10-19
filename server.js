@@ -19,7 +19,7 @@ app.use(formData.parse())
 
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
-app.use('/api/exercises', exerciseRouter)
+app.use('/api/exercise', exerciseRouter)
 
 
 app.use(function (req, res, next) {
