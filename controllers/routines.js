@@ -3,6 +3,12 @@ import { Routine } from '../models/routine.js'
 const index = async(req, res) => {
   try {
     const routines = await Routine.find({})
+      .populate({
+        path: 'workouts',
+        populate: {
+          path: 'exercises'
+        }
+      })
     return res.status(200).json(routines)
   } catch(err) {
     return res.status(500).json(err)
@@ -13,6 +19,12 @@ const show = async(req, res) => {
   console.log(req.params.id)
   try {
     const routine = await Routine.findById(req.params.id)
+      .populate({
+        path: 'workouts',
+        populate: {
+          path: 'exercises'
+        }
+      })
     return res.status(200).json(routine)
   } catch(err) {
     return res.status(500).json(err)
