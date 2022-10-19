@@ -11,7 +11,7 @@ const exerciseSchema = new Schema(
     },
     description: { type: String },
     muscle: {
-      type: String,
+      type: [String],
       enum:[
         'chest',
         'back',
