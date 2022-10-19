@@ -7,7 +7,8 @@ import formData from 'express-form-data'
 import { router as profilesRouter } from './routes/profiles.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as exerciseRouter } from './routes/exercises.js'
-import { router as routineRouter } from './routes/routines'
+import { router as workoutRouter } from './routes/workouts.js'
+import { router as routineRouter } from './routes/routines.js'
 
 import './config/database.js'
 
@@ -21,6 +22,7 @@ app.use(formData.parse())
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/exercise', exerciseRouter)
+app.use('/api/workout', workoutRouter)
 app.use('/api/routine', routineRouter)
 
 
