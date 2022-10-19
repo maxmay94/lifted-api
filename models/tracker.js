@@ -14,6 +14,7 @@ const trackerSchema = new Schema(
       ref: 'Workout'
     }],
     setsReps: [String],
+    weightsUsed: [String],
     user: {
       type: Schema.Types.ObjectId, 
       ref: 'Profile'
