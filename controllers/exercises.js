@@ -17,3 +17,14 @@ export const show = async(req, res) => {
     return res.status(500).json(err)
   }
 }
+
+export const create = async(req, res) => {
+  console.log('\n@@@@@@@@@@@@@@@@@@@@@@@@@@@\n', req.body ,'\n@@@@@@@@@@@@@@@@@@@@@@@@@@@\n')
+  try {
+    const exercise = new Exercise(req.body)
+    await exercise.save()
+    return res.status(200).json(exercise)
+  } catch(err) {
+    return res.status(500).json(err)
+  }
+}
