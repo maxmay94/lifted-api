@@ -30,7 +30,6 @@ const create = async(req, res) => {
 }
 
 const deleteExercise = async(req, res) => {
-  console.log(req.params.id)
   try {
     await Exercise.findByIdAndDelete(req.params.id)
     return res.status(204).end()
@@ -40,7 +39,6 @@ const deleteExercise = async(req, res) => {
 }
 
 const update = async(req, res) => {
-  console.log(req.body)
   try {
     const exercise = await(Exercise.findByIdAndUpdate(req.params.id, req.body))
     await exercise.save()
