@@ -29,8 +29,19 @@ const create = async(req, res) => {
   }
 }
 
+const deleteExercise = async(req, res) => {
+  console.log(req.params.id)
+  try {
+    await Exercise.findByIdAndDelete(req.params.id)
+    return res.status(204).end()
+  } catch(err) {
+    return res.status(500).json(err)
+  }
+}
+
 export {
   index,
   show,
-  create
+  create,
+  deleteExercise as delete
 }

@@ -11,5 +11,6 @@ router.get('/:id', exerciseCtrl.show)
 /* ------------------ Private Routes ------------------ */
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, exerciseCtrl.create)
+router.delete('/:id', checkAuth, exerciseCtrl.delete)
 
 export { router }
