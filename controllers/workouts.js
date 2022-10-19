@@ -2,7 +2,7 @@ import { Workout } from '../models/workout.js'
 
 const index = async(req, res) => {
   try {
-    const workouts = await Workout.find({})
+    const workouts = await Workout.find({}).populate('exercises')
     return res.status(200).json(workouts)
   } catch(err) {
     return res.status(500).json(err)
@@ -12,7 +12,8 @@ const index = async(req, res) => {
 const show = async(req, res) => {
   console.log(req.params.id)
   try {
-    const workout = await Workout.findById(req.params.id)
+    const workout = await Workout.findById(req.params.id).populate('exercises')
+    console.log(workout)
     return res.status(200).json(workout)
   } catch(err) {
     return res.status(500).json(err)
