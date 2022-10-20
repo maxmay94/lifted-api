@@ -18,6 +18,24 @@ const index = async(req, res) => {
   }
 }
 
+const show = async(req, res) => {
+  try {
+    const profiles = await Profile.findById(req.params.id)
+      .populate({
+        path: 'routines',
+        populate: {
+          path: 'workouts',
+          populate: {
+            path: 'exercises'
+          }
+        }
+      })
+    res.status(200).json(profiles)
+  } catch(err) {
+    return res.status(500).json(err)
+  }
+}
+
 const addRoutine = async(req, res) => {
   console.log(req.body)
   try {
@@ -32,5 +50,6 @@ const addRoutine = async(req, res) => {
 
 export { 
   index,
+  show,
   addRoutine
 }
