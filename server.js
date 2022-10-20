@@ -9,6 +9,7 @@ import { router as authRouter } from './routes/auth.js'
 import { router as exerciseRouter } from './routes/exercises.js'
 import { router as workoutRouter } from './routes/workouts.js'
 import { router as routineRouter } from './routes/routines.js'
+import { router as statsRouter } from './routes/stats.js'
 
 import './config/database.js'
 
@@ -24,6 +25,7 @@ app.use('/api/auth', authRouter)
 app.use('/api/exercise', exerciseRouter)
 app.use('/api/workout', workoutRouter)
 app.use('/api/routine', routineRouter)
+app.use('/api/stats', statsRouter)
 
 
 app.use(function (req, res, next) {
