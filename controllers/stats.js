@@ -10,12 +10,22 @@ const index = async(req, res) => {
 }
 
 const show = async(req, res) => {
-  console.log(req.params.id)
   try {
     const stat = await Stat.findById(req.params.id).populate('exercise').populate('user')
     return res.status(200).json(stat)
   } catch(err) {
     return res.status(500).json(err)
+  }
+}
+
+const showUserStats = async(req, res) => {
+  // console.log(req.params.userId)
+  try {
+    const stats = await Stat.find({}).populate('exercise').populate('user')
+    let ret = stats.filter(stat => stat.user._id.toString() === req.params.userId)
+    return res.status(200).json(ret)
+  } catch(err) {
+    return res.stats(500).json(err)
   }
 }
 
@@ -51,6 +61,7 @@ const update = async(req, res) => {
 export {
   index,
   show,
+  showUserStats,
   create,
   deleteStat as delete,
   update

@@ -10,6 +10,7 @@ router.get('/:id', statsCtrl.show)
 
 /* ------------------ Private Routes ------------------ */
 router.use(decodeUserFromToken)
+router.get('/user/:userId', checkAuth, statsCtrl.showUserStats)
 router.post('/', checkAuth, statsCtrl.create)
 router.delete('/:id', checkAuth, statsCtrl.delete)
 router.patch('/:id', checkAuth, statsCtrl.update)
