@@ -1,12 +1,36 @@
 import { Profile } from '../models/profile.js'
 
-function index(req, res) {
-  Profile.find({})
-  .then(profiles => res.json(profiles))
-  .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
-  })
+const index = async(req, res) => {
+  try {
+    const profiles = await Profile.find({})
+      .populate({
+        path: 'routines',
+        populate: {
+          path: 'workouts',
+          populate: {
+            path: 'exercises'
+          }
+        }
+      })
+    res.status(200).json(profiles)
+  } catch(err) {
+    return res.status(500).json(err)
+  }
 }
 
-export { index }
+const addRoutine = async(req, res) => {
+  console.log(req.body)
+  try {
+    const profile = await(Profile.findByIdAndUpdate(req.params.id, req.body))
+    console.log(profile)
+    await profile.save()
+    return res.status(200).json(profile)
+  } catch(err) {
+    res.status(500).json(err)
+  }
+}
+
+export { 
+  index,
+  addRoutine
+}
