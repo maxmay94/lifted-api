@@ -19,11 +19,10 @@ const show = async(req, res) => {
 }
 
 const showUserStats = async(req, res) => {
-  // console.log(req.params.userId)
   try {
     const stats = await Stat.find({}).populate('exercise').populate('user')
-    let ret = stats.filter(stat => stat.user._id.toString() === req.params.userId)
-    return res.status(200).json(ret)
+    let statsFiltered = stats.filter(stat => stat.user._id.toString() === req.params.userId)
+    return res.status(200).json(statsFiltered)
   } catch(err) {
     return res.stats(500).json(err)
   }
