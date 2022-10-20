@@ -9,8 +9,8 @@ const statSchema = new Schema(
       type: Schema.Types.ObjectId, 
       ref: 'Exercise'
     },
-    reps: [Int],
-    weightsUsed: [String],
+    reps: [Number],
+    weights: [String],
     user: {
       type: Schema.Types.ObjectId, 
       ref: 'Profile'

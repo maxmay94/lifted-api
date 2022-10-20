@@ -2,7 +2,7 @@ import { Stat } from '../models/stat.js'
 
 const index = async(req, res) => {
   try {
-    const stats = await Stat.find({})
+    const stats = await Stat.find({}).populate('exercise').populate('user')
     return res.status(200).json(stats)
   } catch(err) {
     return res.status(500).json(err)
@@ -12,7 +12,7 @@ const index = async(req, res) => {
 const show = async(req, res) => {
   console.log(req.params.id)
   try {
-    const stat = await Stat.findById(req.params.id)
+    const stat = await Stat.findById(req.params.id).populate('exercise').populate('user')
     return res.status(200).json(stat)
   } catch(err) {
     return res.status(500).json(err)
