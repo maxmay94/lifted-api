@@ -6,6 +6,10 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema({
   name: String,
+  // isAdmin: {
+  //   type: Boolean,
+  //   dafault: false
+  // },
   email: { type: String, required: true, lowercase: true },
   password: String,
   profile: { type: Schema.Types.ObjectId, ref: 'Profile' },

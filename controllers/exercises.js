@@ -10,7 +10,6 @@ const index = async(req, res) => {
 }
 
 const show = async(req, res) => {
-  console.log(req.params.id)
   try {
     const exercise = await Exercise.findById(req.params.id)
     return res.status(200).json(exercise)
