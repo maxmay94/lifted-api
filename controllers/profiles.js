@@ -37,7 +37,6 @@ const show = async(req, res) => {
 }
 
 const addRoutine = async(req, res) => {
-  console.log(req.body)
   try {
     const profile = await(Profile.findByIdAndUpdate(req.params.id, req.body))
     console.log(profile)

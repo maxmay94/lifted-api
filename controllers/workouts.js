@@ -10,10 +10,8 @@ const index = async(req, res) => {
 }
 
 const show = async(req, res) => {
-  console.log(req.params.id)
   try {
     const workout = await Workout.findById(req.params.id).populate('exercises')
-    console.log(workout)
     return res.status(200).json(workout)
   } catch(err) {
     return res.status(500).json(err)

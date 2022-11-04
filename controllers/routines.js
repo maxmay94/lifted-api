@@ -16,7 +16,6 @@ const index = async(req, res) => {
 }
 
 const show = async(req, res) => {
-  console.log(req.params.id)
   try {
     const routine = await Routine.findById(req.params.id)
       .populate({
